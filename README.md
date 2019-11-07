@@ -1,4 +1,4 @@
-# Moi Node
+# Moi-Code-Api
 > Docker Repo for NodeJS/Express projects hosted on Nginx
 
 ## Introduction
@@ -71,5 +71,4 @@ npm start
 
 yarn start
 ```
-# moi-code-api
-# moi-code-api
+

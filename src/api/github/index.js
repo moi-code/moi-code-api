@@ -1,4 +1,5 @@
 const axios = require('axios');
+const ssrCache = require('../../ssrCache');
 module.exports = (app, server) => {
 	server.get('/github', (req, res) => {
 		var config = {
@@ -42,7 +43,7 @@ module.exports = (app, server) => {
 		const v = `{
     }
 		`;
-		let resp
+		let resp;
 		axios
 			.post(
 				'https://api.github.com/graphql',
@@ -50,13 +51,14 @@ module.exports = (app, server) => {
 				config
 			)
 			.then(resp => {
-				return app.render(req, res, '/github', {
+				const queryParams = {
 					githubData: resp.data.data.viewer
-				});
+				};
+				return ssrCache({ req, res, pagePath: '/github', queryParams });
 			})
 			.catch(err => {
 				console.log('Error:', err);
-				return app.render(req, res, '/github');
+				return ssrCache({ req, res, pagePath: '/github' });
 			});
 	});
 };

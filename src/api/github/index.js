@@ -41,30 +41,22 @@ module.exports = (app, server) => {
 `;
 		const v = `{
     }
-    `;
-		// "number_of_repos": 3
+		`;
+		let resp
 		axios
 			.post(
 				'https://api.github.com/graphql',
 				{ query: q, variables: v },
 				config
 			)
-			.then(res => {
-				const {
-					login,
-					avatarUrl,
-					bio,
-					isHireable,
-					isBountyHunter,
-					organizations,
-					starredRepositories,
-					watching
-				} = res.data.data.viewer;
-				console.log('Respond:', login);
+			.then(resp => {
+				return app.render(req, res, '/github', {
+					githubData: resp.data.data.viewer
+				});
 			})
 			.catch(err => {
 				console.log('Error:', err);
+				return app.render(req, res, '/github');
 			});
-		return app.render(req, res, '/github');
 	});
 };

@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== 'backend') {
 		require('./api/auth')(app, server);
 		require('./api/about')(app, server);
 		require('./api/github')(app, server);
+		require("./api/live")(app, server);
 		/**
 		 * @protected - Do not remove
 		 * @requires Core

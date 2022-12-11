@@ -17,7 +17,7 @@
 		"cacheable-response": "^1.9.0",
 		"cors": "^2.8.5",
 		"dotenv": "^8.0.0",
-		"express": "^4.17.0",
+		"express": "^4.17.3",
 		"lodash": "^4.17.11",
 		"socket.io": "^2.3.0"
 	},
